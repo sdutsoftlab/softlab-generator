@@ -1,0 +1,31 @@
+title: 静态网页生成器
+url: www.softlab.org
+subtitle: 静态网页生成器
+description: nb123
+keywords: lab
+
+# 路径名一定不要以 /起首 go会认定他为绝对路径。 在windows 中以c://起首 go会认为他是绝对路径
+markdown: public/posts/
+output: public/dist/
+
+theme: public/themes/one/
+
+author: devhui
+avatar: 123.com
+github: https://github.com/sdutsoftlab
+mail: sdut.softlab@outlook.com
+
+pageNum: 10
+
+cate:
+  - a
+  - b
+  - c
+paths:
+  - a
+  - b
+  - c
+exts:
+  - 1
+  - 2
+  - 3
