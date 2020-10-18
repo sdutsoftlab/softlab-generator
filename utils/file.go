@@ -100,7 +100,7 @@ func MustOpen(fileName, filePath string) (*os.File, error) {
 func CreateFile(dir, filename string) (string, error) {
 	pwd, _ := os.Getwd()
 
-	dir = path.Join(pwd, dir)             // **pwd/{{dir}}
+	absDir := path.Join(pwd, dir)         // **pwd/{{dir}}
 	file := path.Join(pwd, dir, filename) // **pwd/{{dir}}/{{name}}
 
 	_, err := os.Stat(file)
@@ -108,7 +108,7 @@ func CreateFile(dir, filename string) (string, error) {
 		return file + "文件已经存在", err
 	}
 
-	if err = os.MkdirAll(dir, os.ModePerm); err != nil {
+	if err = os.MkdirAll(absDir, os.ModePerm); err != nil {
 		if os.IsPermission(err) {
 			return "权限不足以创建文件", err
 		}

@@ -23,11 +23,16 @@
 
 <body class="bg-light">
   <div class="container page-top animated fadeInDown">
-    <div class="autopagerize_page_element">
+    <div>
         <div class="content">
             {{ template "content" . }}
+            <div class="pagination">
+                <ul class="clearfix">
+                </ul>
+            </div>
         </div>
     </div>
+
     <footer class="my-5 pt-5 text-muted text-center text-small">
       <p class="mb-1">&copy; 2019-2020 SDUT Computer College Software Lab</p>
       <ul class="list-inline">

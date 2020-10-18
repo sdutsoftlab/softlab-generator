@@ -36,6 +36,7 @@ type Article struct {
 	Id          int    `json:"article_id"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
+	Author      string `json:"author"`
 
 	Summary  string   `json:"summary"`
 	Content  string   `json:"content"`
@@ -45,4 +46,18 @@ type Article struct {
 	CreatedAt int64  `json:"created_at"`
 	UpdatedAt int64  `json:"updated_at"`
 	Url       string `json:"url"`
+}
+
+type Articles []*Article
+
+func (a Articles) Len() int {
+	return len(a)
+}
+
+func (a Articles) Less(i, j int) bool {
+	return a[i].CreatedAt > a[j].CreatedAt
+}
+
+func (a Articles) Swap(i, j int) {
+	a[i], a[j] = a[j], a[i]
 }

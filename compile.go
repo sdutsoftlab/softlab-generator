@@ -15,6 +15,7 @@ var (
 title: %s
 date: %s
 time: %s
+author:
 categories:
 -
 tags:
@@ -45,14 +46,13 @@ func Compile() {
 	}()
 
 	log.Info("开始编译博客")
+	compileArticle()
 	compileHome()
 	log.Debug("编译完成")
 }
 
 func compileHome() {
 	data["artlist"] = GetHomeArt()
-	data["cate"] = "GetCate()"
-	data["tags"] = "GetTag()"
 
 	err := utils.Mkdir(conf.Dist)
 	if err != nil {
@@ -79,8 +79,40 @@ func compileHome() {
 	}
 }
 
-func CompileAirtcle() {
+func compileArticle() {
+	LoadArticle()
+	for _, post := range articles {
 
+		data["title"] = post.Title
+
+		data["article"] = post
+
+		filepath := path.Join(conf.Dist, post.Url)
+		fmt.Println(filepath)
+		err := utils.Mkdir(filepath)
+		if err != nil {
+			panic(err)
+		}
+
+		file := path.Join(filepath, "index.html")
+
+		htmlFile, err := os.Create(file)
+		if err != nil {
+			panic(err)
+		}
+		t, err := template.New("main.tpl").Funcs(funcMap).ParseFiles(
+			conf.Theme+"layout/article.tpl",
+			conf.Theme+"layout/main.tpl")
+		if err != nil {
+			panic(err)
+		}
+
+		err = t.Execute(htmlFile, data)
+		if err != nil {
+			panic(err)
+		}
+
+	}
 }
 
 func CreateMarkdown(filename string) string {
@@ -106,27 +138,4 @@ func CreateMarkdown(filename string) string {
 		log.Fatal(err)
 	}
 	return msg
-}
-
-// 获取首页文章
-func GetHomeArt() []Article {
-	num := conf.HomeArtNum
-	homeArt := make([]Article, 0)
-
-	for i := 0; i < num; i++ {
-		a := Article{
-			Id:          i,
-			Title:       strconv.Itoa(i),
-			Description: "11",
-			Summary:     "22",
-			Content:     "333",
-			Tags:        []string{"t1", "t2"},
-			Category:    []string{"c1", "c2"},
-			CreatedAt:   0,
-			UpdatedAt:   0,
-			Url:         "111",
-		}
-		homeArt = append(homeArt, a)
-	}
-	return homeArt
 }
