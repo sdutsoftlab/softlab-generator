@@ -1,6 +1,6 @@
-title: 静态网页生成器
+title: SDUT Computer College Software Lab
 url: www.softlab.org
-subtitle: 静态网页生成器
+subtitle: IPP
 description: nb123
 keywords: lab
 
@@ -12,10 +12,11 @@ theme: public/themes/one/
 
 author: devhui
 avatar: 123.com
+contact: devhui@ihui.ink
 github: https://github.com/sdutsoftlab
 mail: sdut.softlab@outlook.com
 
-pageNum: 10
+pageSize: 1
 
 cate:
   - a

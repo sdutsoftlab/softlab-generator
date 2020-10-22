@@ -41,10 +41,19 @@ func LoadArticle() {
 }
 
 // 获取首页文章
-func GetHomeArt() []*Article {
+func GetHomeArt(pageNum, pageSize int) []*Article {
 	homeArt := make([]*Article, len(articles))
 	copy(homeArt, articles)
 	return homeArt
+}
+
+// 获取页数
+func GetPages(pageSize int) int {
+	tmp := len(articles)
+	if tmp%pageSize != 0 {
+		return tmp/pageSize + 1
+	}
+	return tmp / pageSize
 }
 
 // 获取 markdown 文件夹下所有.md文件的路径名

@@ -19,6 +19,6 @@ func ListenHTTPServer(port int) {
 		http.FileServer(http.Dir(conf.Dist+"/assets/"))))
 	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir(conf.Dist))))
 
-	//log.Info("内置web服务器开启成功，监听端口 :%d...", port)
+	log.Info("内置web服务器开启成功，监听端口 :%d...", port)
 	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
 }

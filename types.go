@@ -13,10 +13,13 @@ type Website struct {
 
 	Theme string `yaml:"theme"`
 
-	Author string `yaml:"author"`
-	Avatar string `yaml:"avatar"`
-	Github string `yaml:"github"`
-	Mail   string `yaml:"mail"`
+	Author  string `yaml:"author"`
+	Avatar  string `yaml:"avatar"`
+	Contact string `yaml:"contact"`
+	Github  string `yaml:"github"`
+	Mail    string `yaml:"mail"`
+
+	PageSize int `yaml:"pageSize"`
 
 	Cates []string `yaml:"cate"`
 	Paths []string `yaml:"paths"`

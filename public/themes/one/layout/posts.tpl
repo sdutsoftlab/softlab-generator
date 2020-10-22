@@ -14,14 +14,12 @@
   <!-- CSS only -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="https://cdn.bootcss.com/highlight.js/9.15.8/styles/solarized-dark.min.css" rel="stylesheet">
-  <!--
-      <link href="/assets/css/basic.css" rel="stylesheet">
-      <link href="/assets/css/style.css" rel="stylesheet">
-   -->
+  <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.0/styles/tomorrow-night-eighties.min.css" rel="stylesheet">
+  <link href="/assets/css/basic.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 
-<body class="bg-light">
+<body>
   <div class="container page-top animated fadeInDown">
     <div>
         <div class="content">

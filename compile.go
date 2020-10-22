@@ -34,7 +34,9 @@ tags:
 		"keywords":    conf.Keywords,
 		"author":      conf.Author,
 		"avatar":      conf.Avatar,
+		"contact":     conf.Contact,
 		"github":      conf.Github,
+		"mail":        conf.Mail,
 	}
 )
 
@@ -45,15 +47,16 @@ func Compile() {
 		}
 	}()
 
-	log.Info("开始编译博客")
+	log.Info("开始编译")
 	compileArticle()
 	compileHome()
-	log.Debug("编译完成")
+	log.Info("编译完成")
 }
 
 func compileHome() {
-	data["artlist"] = GetHomeArt()
-
+	data["pages"] = GetPages(conf.PageSize)
+	data["artlist"] = GetHomeArt(1, conf.PageSize)
+	data["title"] = conf.Title
 	err := utils.Mkdir(conf.Dist)
 	if err != nil {
 		panic("生成目录创建错误")
@@ -82,9 +85,7 @@ func compileHome() {
 func compileArticle() {
 	LoadArticle()
 	for _, post := range articles {
-
 		data["title"] = post.Title
-
 		data["article"] = post
 
 		filepath := path.Join(conf.Dist, post.Url)
@@ -100,9 +101,9 @@ func compileArticle() {
 		if err != nil {
 			panic(err)
 		}
-		t, err := template.New("main.tpl").Funcs(funcMap).ParseFiles(
-			conf.Theme+"layout/article.tpl",
-			conf.Theme+"layout/main.tpl")
+		t, err := template.New("posts.tpl").Funcs(funcMap).ParseFiles(
+			conf.Theme+"layout/posts.tpl",
+			conf.Theme+"layout/article.tpl")
 		if err != nil {
 			panic(err)
 		}
@@ -118,7 +119,6 @@ func compileArticle() {
 func CreateMarkdown(filename string) string {
 	year, month, _ := time.Now().Date()
 
-	// **pwd/posts/year/month/123.md
 	dir := path.Join(conf.Markdown, strconv.Itoa(year),
 		strconv.Itoa(int(month)))
 
